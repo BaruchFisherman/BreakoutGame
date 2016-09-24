@@ -1,7 +1,38 @@
-let canvas = document.getElementById("myCanvas");
-let ctx = canvas.getContext("2d");
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
 
-let ball = {
+// class KeyHandler {
+//     constructor() {
+//         this.rightPressed = false;
+//         this.leftPressed = false;
+
+//         document.addEventListener("keydown", this.keyDownHandler, false);
+//         document.addEventListener("keyup", this.keyUpHandler, false);
+//     }
+
+//     keyDownHandler(e) {
+//         if (e.keyCode == 39) {
+//             console.log('keyDownHandler.rightPressed');
+//             //console.log("-----keyUpHandler-----")
+//             this.rightPressed = true;
+//         }
+//         else if (e.keyCode == 37) {
+//             //console.log("-----keyUpHandler-----")
+//             this.leftPressed = true;
+//         }
+//     }
+//     keyUpHandler(e) {
+//         if (e.keyCode == 39) {
+//             //console.log("-----keyUpHandler-----");
+//             this.rightPressed = false;
+//         }
+//         else if (e.keyCode == 37) {
+//             //console.log("-----keyUpHandler-----");
+//             this.leftPressed = false;
+//         }
+//     }
+// }
+var ball = {
     x: canvas.width / 2,
     y: canvas.height - 30,
     dx: 2,
@@ -29,11 +60,14 @@ let ball = {
 }
 
 
-let paddle = {
+var paddle = {
     height: 10,
     width: 75,
     get x() {
         return (canvas.width - this.width) / 2;
+    },
+    set x(value) {
+        this.x = value;
     },
     color: "blue",
     draw() {
@@ -42,46 +76,32 @@ let paddle = {
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.closePath();
+    },
+    moveRight() {
+        paddle.x += 7;
+    },
+    moveLeft() {
+        paddle.x -= 7;
     }
 }
 
-let keyHandler = {
-    rightPressed: false,
-    leftPressed: false,
-    attached: false,
-    init() {
-        if (!this.attached) {
-            attached = true;
-            document.addEventListener("keydown", this.keyDownHandler, false);
-            document.addEventListener("keyup", this.keyUpHandler, false);
-        }
-    },
-    keyDownHandler(e) {
-        if (e.keyCode == 39) {
-            this.rightPressed = true;
-        }
-        else if (e.keyCode == 37) {
-            this.leftPressed = true;
-        }
-    },
-    keyUpHandler(e) {
-        if (e.keyCode == 39) {
-            this.rightPressed = false;
-        }
-        else if (e.keyCode == 37) {
-            this.leftPressed = false;
-        }
-    }
-}
 
 function draw() {
+keyHandler.leftPressed;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ball.drow();
     paddle.draw();
     ball.setPosition();
 
+    // if (keyHandler.rightPressed) {
+    //     paddle.moveRight();
+    // }
+    // else if (keyHandler.leftPressed) {
+    //     paddle.moveLeft();
+    // }
+
     requestAnimationFrame(draw);
 }
 
-keyHandler.init();
+// var keyHandler = new KeyHandler();
 draw();
