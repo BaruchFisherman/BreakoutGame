@@ -45,6 +45,34 @@ let paddle = {
     }
 }
 
+let keyHandler = {
+    rightPressed: false,
+    leftPressed: false,
+    attached: false,
+    init() {
+        if (!this.attached) {
+            attached = true;
+            document.addEventListener("keydown", this.keyDownHandler, false);
+            document.addEventListener("keyup", this.keyUpHandler, false);
+        }
+    },
+    keyDownHandler(e) {
+        if (e.keyCode == 39) {
+            this.rightPressed = true;
+        }
+        else if (e.keyCode == 37) {
+            this.leftPressed = true;
+        }
+    },
+    keyUpHandler(e) {
+        if (e.keyCode == 39) {
+            this.rightPressed = false;
+        }
+        else if (e.keyCode == 37) {
+            this.leftPressed = false;
+        }
+    }
+}
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -55,4 +83,5 @@ function draw() {
     requestAnimationFrame(draw);
 }
 
+keyHandler.init();
 draw();
