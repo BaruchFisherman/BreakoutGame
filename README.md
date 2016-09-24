@@ -1,2 +1,2 @@
 # BreakoutGame
-test from visual studio code
+Simple canvas game...
