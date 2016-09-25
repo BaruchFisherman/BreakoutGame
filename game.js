@@ -1,37 +1,7 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
-// class KeyHandler {
-//     constructor() {
-//         this.rightPressed = false;
-//         this.leftPressed = false;
 
-//         document.addEventListener("keydown", this.keyDownHandler, false);
-//         document.addEventListener("keyup", this.keyUpHandler, false);
-//     }
-
-//     keyDownHandler(e) {
-//         if (e.keyCode == 39) {
-//             console.log('keyDownHandler.rightPressed');
-//             //console.log("-----keyUpHandler-----")
-//             this.rightPressed = true;
-//         }
-//         else if (e.keyCode == 37) {
-//             //console.log("-----keyUpHandler-----")
-//             this.leftPressed = true;
-//         }
-//     }
-//     keyUpHandler(e) {
-//         if (e.keyCode == 39) {
-//             //console.log("-----keyUpHandler-----");
-//             this.rightPressed = false;
-//         }
-//         else if (e.keyCode == 37) {
-//             //console.log("-----keyUpHandler-----");
-//             this.leftPressed = false;
-//         }
-//     }
-// }
 var ball = {
     x: canvas.width / 2,
     y: canvas.height - 30,
@@ -78,30 +48,29 @@ var paddle = {
         ctx.closePath();
     },
     moveRight() {
-        paddle.x += 7;
+        this.x += 7;
     },
     moveLeft() {
-        paddle.x -= 7;
+        this.x -= 7;
     }
 }
 
 
 function draw() {
-keyHandler.leftPressed;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ball.drow();
     paddle.draw();
     ball.setPosition();
 
-    // if (keyHandler.rightPressed) {
-    //     paddle.moveRight();
-    // }
-    // else if (keyHandler.leftPressed) {
-    //     paddle.moveLeft();
-    // }
+    if (keyHandler.rightPressed) {
+        paddle.moveRight();
+    }
+    else if (keyHandler.leftPressed) {
+        paddle.moveLeft();
+    }
 
     requestAnimationFrame(draw);
 }
 
-// var keyHandler = new KeyHandler();
+var keyHandler = new KeyHandler();
 draw();
