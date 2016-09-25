@@ -17,10 +17,14 @@ class Paddle {
     }
 
     moveRight() {
-        this.x += 7;
+        if (this.x < this.canvas.width - this.width) {
+            this.x += 7;
+        }
     }
 
     moveLeft() {
-        this.x -= 7;
+        if (this.x > 0) {
+            this.x -= 7;
+        }
     }
 }

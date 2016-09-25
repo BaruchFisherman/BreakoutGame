@@ -18,16 +18,4 @@ class Ball {
         this.ctx.fill();
         this.ctx.closePath();
     }
-
-    setPosition() {
-        if (this.x + this.dx > this.canvas.width - this.radius || this.x + this.dx < this.radius) {
-            ball.dx *= -1;
-        }
-        if (this.y + this.dy > this.canvas.height - this.radius || this.y + this.dy < this.radius) {
-            this.dy *= -1;
-        }
-
-        this.x += this.dx;
-        this.y += this.dy;
-    }
 }
