@@ -10,5 +10,7 @@ var brickConfig = {
 
 var brickPrototype = {
     x:0,
-    y:0
+    y:0,
+    width: 75,
+    height: 20
 }

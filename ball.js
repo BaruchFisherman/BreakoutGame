@@ -7,8 +7,9 @@ class Ball {
         this.y = canvas.height - 30;
         this.dx = 2;
         this.dy = -2;
-        this.radius = 10;
+        this.radius = 2;
         this.color = "red";
+        this.width = this.height = this.radius * 2;
     }
 
     drow() {

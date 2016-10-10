@@ -15,6 +15,7 @@ console.log(bricks);
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBricks();
+    collisionDetection();
     ball.drow();
     paddle.draw();
     moveBall();
@@ -66,6 +67,30 @@ function moveBall() {
 
     ball.x += ball.dx;
     ball.y += ball.dy;
+}
+
+function collisionDetection() {
+    for (let c = 0; c < brickConfig.columnCount; c++) {
+        for (let r = 0; r < brickConfig.rowCount; r++) {
+            let brick = bricks[c][r];
+            if(isCollide(brick, ball)){
+                ball.dy *= -1;
+            }
+            // if (ball.x > brick.x && ball.x < brick.x + brickConfig.width &&
+            //     ball.y > brick.y && ball.y < brick.y + brickConfig.height) {
+            //     ball.dy *= -1;
+            // }
+        }
+    }
+}
+
+function isCollide(a, b) {
+    return !(
+        ((a.y + a.height) < (b.y)) ||
+        (a.y > (b.y + b.height)) ||
+        ((a.x + a.width) < b.x) ||
+        (a.x > (b.x + b.width))
+    );
 }
 
 let keyHandler = new KeyHandler();
